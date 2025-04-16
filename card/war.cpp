@@ -16,7 +16,7 @@ void WarGame::dealCards() {
     for (int i = 0; i < 52; ++i) {
         Card* card = deck.getCard();
         if (!card) {
-            std::cerr << " X deck.getCard() returned NULL at i = " << i << "\n";
+            std::cerr << " X NULL" << i << "\n";
             break;
         }
 
@@ -53,9 +53,9 @@ void WarGame::startGame() {
     }
 
     if (playerDeck.empty())
-        std::cout << "\nComputer wins the game!\n";
+        std::cout << "\ncomputer wins the game!\n";
     else
-        std::cout << "\nYou win the game!\n";
+        std::cout << "\nYOU WIN THE GAME\n";
 }
 
 void WarGame::playTurn() {
@@ -64,9 +64,9 @@ void WarGame::playTurn() {
     Card* playerCard = playerDeck.front(); playerDeck.pop();
     Card* computerCard = computerDeck.front(); computerDeck.pop();
 
-    std::cout << "You played: ";
+    std::cout << "you played: ";
     playerCard->print();
-    std::cout << "Computer played: ";
+    std::cout << "computer played: ";
     computerCard->print();
 
     std::vector<Card*> pile = { playerCard, computerCard };
@@ -74,11 +74,11 @@ void WarGame::playTurn() {
     int result = playerCard->compareValue(computerCard);
 
     if (result > 0) {
-        std::cout << "You win this round!\n";
+        std::cout << "you win this round\n";
         collectCards(playerDeck, pile);
     }
     else if (result < 0) {
-        std::cout << "Computer wins this round!\n";
+        std::cout << "computer wins this round\n";
         collectCards(computerDeck, pile);
     }
     else {
@@ -89,7 +89,7 @@ void WarGame::playTurn() {
 
 void WarGame::handleWar(std::vector<Card*>& warPile) {
     if (playerDeck.size() < 2 || computerDeck.size() < 2) {
-        std::cout << "Not enough cards for war!\n";
+        std::cout << "not enough cards\n";
         return;
     }
 
@@ -102,23 +102,23 @@ void WarGame::handleWar(std::vector<Card*>& warPile) {
     warPile.push_back(playerCard);
     warPile.push_back(computerCard);
 
-    std::cout << "You (War) played: ";
+    std::cout << "you played war: ";
     playerCard->print();
-    std::cout << "Computer (War) played: ";
+    std::cout << "computer played war: ";
     computerCard->print();
 
     int result = playerCard->compareValue(computerCard);
 
     if (result > 0) {
-        std::cout << "You win the war!\n";
+        std::cout << "YOU WIN\n";
         collectCards(playerDeck, warPile);
     }
     else if (result < 0) {
-        std::cout << "Computer wins the war!\n";
+        std::cout << "computer wins the war\n";
         collectCards(computerDeck, warPile);
     }
     else {
-        std::cout << "Another tie! WAR continues...\n";
+        std::cout << "tie! the war is still on\n";
         handleWar(warPile);
     }
 }
