@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Run War Card Game",
+        "type": "cppvsdbg",
+        "request": "launch",
+        "program": "C:/Users/yasmi/source/repos/card/card/war.exe",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "C:/Users/yasmi/source/repos/card/card",
+        "environment": [],
+        "console": "externalTerminal"
+      }
+    ]
+  }
+  

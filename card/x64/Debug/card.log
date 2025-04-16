@@ -1,0 +1,7 @@
+﻿  card.cpp
+  deck.cpp
+C:\Users\yasmi\source\repos\card\card\deck.cpp(30,82): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  main.cpp
+  war.cpp
+  Generating Code...
+  card.vcxproj -> C:\Users\yasmi\source\repos\card\x64\Debug\card.exe
