@@ -2,9 +2,11 @@
 #include <algorithm>
 #include <random>
 #include <ctime>
+#include <iostream>
+
 
 CardDeck::CardDeck() {
-    std::string suits[] = { "Clubs", "Diamonds", "Hearts", "Spades" };
+    std::string suits[] = { "club", "diamond", "heart", "spade" };
     std::string values[] = { "2", "3", "4", "5", "6", "7", "8", "9", "10",
                            "Jack", "Queen", "King", "Ace" };
 
@@ -32,6 +34,8 @@ void CardDeck::shuffle() {
     for (Card* card : mixed) {
         shuffledDeck.push(card);
     }
+    std::cout << "\nShuffled deck size: " << shuffledDeck.size() << std::endl;
+
 }
 
 Card* CardDeck::getCard() {

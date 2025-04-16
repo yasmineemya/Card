@@ -11,26 +11,33 @@ WarGame::WarGame() {
 void WarGame::dealCards() {
     CardDeck deck;
     deck.shuffle();
+    std::cout << "   Deck shuffled\n";
 
-    int count = 0;
-    for (int i = 0; i < 52; ++i) {
-        Card* card = deck.getCard();
-        if (!card) {
-            std::cerr << " X NULL" << i << "\n";
-            break;
-        }
 
-        if (i % 2 == 0) {
-            std::cout << "Player gets: " << card->display() << "\n";
-            playerDeck.push(card);
-        } else {
-            std::cout << "Computer gets: " << card->display() << "\n";
-            computerDeck.push(card);
-        }
+    int playerCount = 0;
+int computerCount = 0;
 
-        count++;
+for (int i = 0; i < 52; i++) {
+    Card* card = deck.getCard();
+    if (!card) {
+        std::cerr << "NULL card at index " << i << "!\n";
+        break;
     }
-    std::cout << "Total cards dealt: " << count << std::endl;
+
+    if (i % 2 == 0) {
+        std::cout << "\nplayer gets: " << card->display() << "\n";
+        playerDeck.push(card);
+        playerCount++;
+    } else {
+        std::cout << "Computer gets: " << card->display() << "\n";
+        computerDeck.push(card);
+        computerCount++;
+    }
+}
+
+std::cout << "\nTotal  cards  dealt: " << (playerCount + computerCount) << "\n";
+std::cout << " Player got: " << playerCount << " cards\n";
+std::cout << " Computer got: " << computerCount << " cards\n";
 }
 
 
@@ -42,12 +49,14 @@ void WarGame::startGame() {
     while (!playerDeck.empty() && !computerDeck.empty()) {
         playTurn();
 
-        std::cout << "\nContinue? (y/n): ";
+        std::cout << "\n  Continue? (y/n): ";
         std::getline(std::cin, input);
         if (input != "y" && input != "Y") {
-            std::cout << "\nYou quit the game.\n";
+        std::cout << "\n    ⚀⚁⚂⚃⚄⚅\n";
+            std::cout << "You quit the game.\n";
             std::cout << "You have " << playerDeck.size() << " cards.\n";
             std::cout << "Computer has " << computerDeck.size() << " cards.\n";
+    
             return;
         }
     }
@@ -55,7 +64,7 @@ void WarGame::startGame() {
     if (playerDeck.empty())
         std::cout << "\ncomputer wins the game!\n";
     else
-        std::cout << "\nYOU WIN THE GAME\n";
+        std::cout << "\n ˗ˏˋ ★ ˎˊ˗ YOU WIN THE GAME  ˗ˏˋ ★ ˎˊ˗ \n";
 }
 
 void WarGame::playTurn() {
@@ -64,7 +73,7 @@ void WarGame::playTurn() {
     Card* playerCard = playerDeck.front(); playerDeck.pop();
     Card* computerCard = computerDeck.front(); computerDeck.pop();
 
-    std::cout << "you played: ";
+    std::cout << "\nyou played: ";
     playerCard->print();
     std::cout << "computer played: ";
     computerCard->print();
@@ -74,7 +83,7 @@ void WarGame::playTurn() {
     int result = playerCard->compareValue(computerCard);
 
     if (result > 0) {
-        std::cout << "you win this round\n";
+        std::cout << "✮you WIN this round✮\n";
         collectCards(playerDeck, pile);
     }
     else if (result < 0) {
@@ -82,7 +91,7 @@ void WarGame::playTurn() {
         collectCards(computerDeck, pile);
     }
     else {
-        std::cout << "WAR!\n";
+        std::cout << "    WAR!\n";
         handleWar(pile);
     }
 }
@@ -102,7 +111,7 @@ void WarGame::handleWar(std::vector<Card*>& warPile) {
     warPile.push_back(playerCard);
     warPile.push_back(computerCard);
 
-    std::cout << "you played war: ";
+    std::cout << "\nyou played war: ";
     playerCard->print();
     std::cout << "computer played war: ";
     computerCard->print();

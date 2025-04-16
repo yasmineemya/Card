@@ -6,8 +6,15 @@
 #include "war.h"
 
 int main() {
+    std::cout << "\n   starting game";
+    std:: cout<< "\n      🃁🃜🃚🃖🂭🂺  \n";
 
-    CardDeck deck;
+    WarGame game;
+    game.startGame();
+    return 0;
+}
+
+    /**CardDeck deck;
 
     std::cout << "1st Shuffle:\n";
     deck.shuffle();
@@ -25,15 +32,10 @@ int main() {
         if (card) {
             std::cout << card->display() << std::endl;
         }
-    }
+    }**/
 
-    std::cout << "\n starting game\n";
 
-    WarGame game;
-    game.startGame();
-    return 0;
 
-}
 
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
